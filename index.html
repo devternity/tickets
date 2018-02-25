@@ -19,81 +19,84 @@
     <script type="text/javascript">
       angular.module('app', ['ngRoute', 'monospaced.qrcode'])
 
-        .service('Tickets', function($http) {
+        .service('Tickets', function($q, $http) {
             var self = this;
             this.fetch = function (orderUUID) {
+              if (orderUUID === "TEST") {
+                var q = $q.defer();
+                q.resolve([
+                    {
+                      id: "865a12fb-b598-492f-9c04-4da28ede448a",
+                      title: "DevTernity 2018",
+                      event: "Main Day Pass",
+                      startsAt: "Friday 30th 2018",
+                      startsAtHint: "Registration starts at 8:00",
+                      location: "National Library of Latvia",
+                      locationHint: "Mūkusalas iela 3, Riga, Latvia",
+                      holder: {
+                        name: "Eduards Sizovs",
+                        email: "eduards@sizovs.net"
+                      }
+                    },
+                    {
+                      id: "865a12fb-b598-492f-9c04-33328ede448a",              
+                      title: "DevTernity 2018",
+                      event: "Crafting Code workshop apdp ad akd",
+                      startsAt: "Friday 30th 2018",
+                      startsAtHint: "Registration starts at 8:00",
+                      location: "National Library of Latvia",
+                      locationHint: "Mūkusalas iela 3, Riga, Latvia",
+                      holder: {
+                        name: "Eduards Sizovs",
+                        email: "eduards@sizovs.net"
+                      }
+                    },
+                    {
+                      id: "865a12fb-b598-492f-9c04-4da28ede448a",              
+                      title: "DevTernity 2018",
+                      event: "Main Day Pass",
+                      startsAt: "Friday 30th 2018",
+                      startsAtHint: "Registration starts at 8:00",
+                      location: "National Library of Latvia",
+                      locationHint: "Mūkusalas iela 3, Riga, Latvia",
+                      holder: {
+                        name: "Eduards Sizovs",
+                        email: "eduards@sizovs.net"
+                      }
+                    },
+                    {
+                      id: "865a12fb-b598-492f-9c04-4da28ede448a",              
+                      title: "DevTernity 2018",
+                      event: "Main Day Pass",
+                      startsAt: "Friday 30th 2018",
+                      startsAtHint: "Registration starts at 8:00",
+                      location: "National Library of Latvia",
+                      locationHint: "Mūkusalas iela 3, Riga, Latvia",
+                      holder: {
+                        name: "Eduards Sizovs",
+                        email: "eduards@sizovs.net"
+                      }
+                    },
+                    {
+                      id: "865a12fb-b598-492f-9c04-4da28ede448a",              
+                      title: "DevTernity 2018",
+                      event: "Main Day Pass",
+                      startsAt: "Friday 30th 2018",
+                      startsAtHint: "Registration starts at 8:00",
+                      location: "National Library of Latvia",
+                      locationHint: "Mūkusalas iela 3, Riga, Latvia",
+                      holder: {
+                        name: "Eduards Sizovs",
+                        email: "eduards@sizovs.net"
+                      }
+                    }                         
+                  ])
+                return q.promise;
+              }
+
               return $http
                 .get("https://devternity-22e74.firebaseio.com/applications/" + orderUUID + "/tickets.json")
                 .then(function(it) { 
-                  if (orderUUID === "DEMO") {
-                    return [
-                      {
-                        id: "865a12fb-b598-492f-9c04-4da28ede448a",
-                        title: "DevTernity 2018",
-                        event: "Main Day Pass",
-                        startsAt: "Friday 30th 2018",
-                        startsAtHint: "Registration starts at 8:00",
-                        location: "National Library of Latvia",
-                        locationHint: "Mūkusalas iela 3, Riga, Latvia",
-                        holder: {
-                          name: "Eduards Sizovs",
-                          email: "eduards@sizovs.net"
-                        }
-                      },
-                      {
-                        id: "865a12fb-b598-492f-9c04-33328ede448a",              
-                        title: "DevTernity 2018",
-                        event: "Crafting Code workshop apdp ad akd",
-                        startsAt: "Friday 30th 2018",
-                        startsAtHint: "Registration starts at 8:00",
-                        location: "National Library of Latvia",
-                        locationHint: "Mūkusalas iela 3, Riga, Latvia",
-                        holder: {
-                          name: "Eduards Sizovs",
-                          email: "eduards@sizovs.net"
-                        }
-                      },
-                      {
-                        id: "865a12fb-b598-492f-9c04-4da28ede448a",              
-                        title: "DevTernity 2018",
-                        event: "Main Day Pass",
-                        startsAt: "Friday 30th 2018",
-                        startsAtHint: "Registration starts at 8:00",
-                        location: "National Library of Latvia",
-                        locationHint: "Mūkusalas iela 3, Riga, Latvia",
-                        holder: {
-                          name: "Eduards Sizovs",
-                          email: "eduards@sizovs.net"
-                        }
-                      },
-                      {
-                        id: "865a12fb-b598-492f-9c04-4da28ede448a",              
-                        title: "DevTernity 2018",
-                        event: "Main Day Pass",
-                        startsAt: "Friday 30th 2018",
-                        startsAtHint: "Registration starts at 8:00",
-                        location: "National Library of Latvia",
-                        locationHint: "Mūkusalas iela 3, Riga, Latvia",
-                        holder: {
-                          name: "Eduards Sizovs",
-                          email: "eduards@sizovs.net"
-                        }
-                      },
-                      {
-                        id: "865a12fb-b598-492f-9c04-4da28ede448a",              
-                        title: "DevTernity 2018",
-                        event: "Main Day Pass",
-                        startsAt: "Friday 30th 2018",
-                        startsAtHint: "Registration starts at 8:00",
-                        location: "National Library of Latvia",
-                        locationHint: "Mūkusalas iela 3, Riga, Latvia",
-                        holder: {
-                          name: "Eduards Sizovs",
-                          email: "eduards@sizovs.net"
-                        }
-                      }                         
-                    ]                    
-                  }
                   return it.data;
                 });
             };

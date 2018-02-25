@@ -1,0 +1,62 @@
+<div class="container">
+  <header>
+    <h1>Tickets</h1>
+    <button ng-click="self.print()" class="print">Print all</button>
+    <h2>Thanks for purchase!</h2>
+    <p> Please bring printed tickets to the registration desk.
+    </p>
+    <p>A person other than the ticket holder can attend the conference by bringing the ticket to the registration desk. You don't need to inform conference organisers on this occasion.      
+    </p>
+  </header>
+
+  <div class="item" ng-repeat="ticket in self.tickets">
+    <div class="item-right">
+      <qrcode data="{{ticket.id}}" color="black" size="130"></qrcode>
+      <span class="up-border"></span>
+      <span class="down-border"></span>
+    </div>
+    
+    <div class="item-left">
+      <p class="event">{{ticket.title}}</p>
+      <h2 class="title limit">{{ticket.event}}</h2>
+      <div class="info">
+        <div class="icon">
+          <p>
+            <i class="fa fa-table"></i> {{ticket.startsAt}}<br/>{{ticket.startsAtHint}}
+          </p>
+        </div>
+      </div>
+      <div class="info">
+        <div class="icon">
+          <p>
+          <i class="fa fa-map-marker"></i> {{ticket.location}}<br>{{ticket.locationHint}}
+         </p>
+        </div>
+      </div>
+      <div class="info">
+        <div class="icon">
+          <p>
+          <i class="fa fa-user"></i> {{ticket.holder.name}}
+          </p>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <hr/>
+      <h1>Thanks for being part of DevTernity!</h1>
+      <br/>
+      <p> Please bring printed ticket to the registration desk.
+      </p>
+      <p>A person other than the ticket holder can attend the conference by bringing the ticket to the registration desk. You don't need to inform conference organisers on this occasion.      
+      </p> 
+      <br/>     
+      <img class="logo" src="http://res.cloudinary.com/eduardsi/image/upload/c_scale,h_200/v1513458004/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50IjoyOTM1MTYwLCJidWNrZXQiOiJ1cGxvYWRzIiwia2V5IjoiJ2RvY3MtJy0yOTM1MTYwL3VwbG9hZC1kZGIwMjcyMDYyMDllYmE3ODQyYzIyNmIyNzlhZTVhM2E0ZTk2YjI0IiwiZmlsZW5hbWUiOiJ_nottdy.png">          
+      <br/><br/>
+      <i class="fa fa-twitter"></i> #devternity @devternity<br/><br/>
+      <i class="fa fa-facebook"></i> facebook.com/devternity<br/><br/>
+      <i class="fa fa-instagram"></i> instagram.com/devternity<br/><br/>
+      <i class="fa fa-linkedin"></i> go.devternity.com/linkedin
+    </footer>
+    <hr/>
+  </div>
+</div>

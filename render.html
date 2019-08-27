@@ -2,11 +2,12 @@
   <header>
     <h1>Tickets</h1>
     <button ng-click="self.print()" class="print">Print all</button>
-    <h2>Thanks for purchase!</h2>
+    <h2>Thanks for your purchase!</h2>
     <p> Please bring printed tickets to the registration desk.
     </p>
-    <p>A person other than the ticket holder can attend the conference by bringing the ticket to the registration desk. You don't need to inform conference organisers on this occasion. Yet we recommend that you send details of a new participant to hello@devternity.com, otherwise, a new participant might not receive important email updates.
+    <p>A person other than the ticket holder can attend the conference. You don't need to inform conference organisers on this occasion. 
     </p>
+    <p>To receive important email updates, we recommend you to keep participant details up to date.</p>
   </header>
 
   <div class="item" ng-repeat="ticket in self.tickets">
@@ -33,11 +34,24 @@
          </p>
         </div>
       </div>
-      <div class="info">
+      <div class="info view">
         <div class="icon">
           <p>
-          <i class="fa fa-user"></i> {{ticket.holder.name}}
+            <i class="fa fa-user"></i>
+            {{ticket.holder.name}}
           </p>
+        </div>
+      </div>
+      <div class="info edit">
+        <div class="icon">
+          <p>
+          <input type="text" placeholder="{{ticket.holder.name}}" ng-model="self.ticketsForChange[$index].name" />
+          <input type="text" placeholder="{{ticket.holder.email}}" ng-model="self.ticketsForChange[$index].email"/>
+          </p>
+        </div>
+        <div style="height: 1em">
+          <a href="" ng-click="self.save($index)" ng-show="self.ticketsForChange[$index].name || self.ticketsForChange[$index].email">save</a>
+          <a href="" ng-click="self.cancel($index)" ng-show="self.ticketsForChange[$index].name || self.ticketsForChange[$index].email">cancel</a>
         </div>
       </div>
     </div>

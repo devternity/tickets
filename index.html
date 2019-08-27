@@ -18,9 +18,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"  />    
     <script type="text/javascript">
       angular.module('app', ['ngRoute', 'monospaced.qrcode'])
-
         .service('Tickets', function($q, $http) {
             var self = this;
+            this.update = function(orderUUID, index, name, email) {
+              return $http.post("https://api.devternity.com/applications/" + orderUUID + "/update/" + index, {
+                name: name,
+                email: email
+              });
+            }
+
             this.fetch = function (orderUUID) {
               if (orderUUID === "TEST") {
                 var q = $q.defer();
@@ -34,7 +40,7 @@
                       location: "National Library of Latvia",
                       locationHint: "Mūkusalas iela 3, Riga, Latvia",
                       holder: {
-                        name: "Eduards Sizovs",
+                        name: "Eduards Sizovs la Amigos De Rojos",
                         email: "eduards@sizovs.net"
                       }
                     },
@@ -52,7 +58,7 @@
                       }
                     },
                     {
-                      id: "865a12fb-b598-492f-9c04-4da28ede448a",              
+                      id: "865a12fb-b598-492f-9c04-4da28zde448a",              
                       title: "DevTernity 2018",
                       event: "Main Day Pass",
                       startsAt: "Friday 30th 2018",
@@ -65,7 +71,7 @@
                       }
                     },
                     {
-                      id: "865a12fb-b598-492f-9c04-4da28ede448a",              
+                      id: "865a12fb-b598-492f-9c04-4df28ede448a",              
                       title: "DevTernity 2018",
                       event: "Main Day Pass",
                       startsAt: "Friday 30th 2018",
@@ -78,7 +84,7 @@
                       }
                     },
                     {
-                      id: "865a12fb-b598-492f-9c04-4da28ede448a",              
+                      id: "865a12fb-b598-492f-9c04-4d328ede448a",              
                       title: "DevTernity 2018",
                       event: "Main Day Pass",
                       startsAt: "Friday 30th 2018",
@@ -130,7 +136,7 @@
           });
       })
 
-      .controller('ViewTickets', function($location, $routeParams, tickets) {    
+      .controller('ViewTickets', function($location, $routeParams, Tickets, tickets) {    
           if (!tickets) {
             return;
           }
@@ -139,6 +145,29 @@
             window.print()
           }
 
+          this.save = function(ticketIndex) {
+            var self = this;
+            var update = this.ticketsForChange[ticketIndex];
+            var original = this.tickets[ticketIndex].holder;
+            var name = update.name || original.name
+            var email = update.email || original.email
+            Tickets.update($routeParams.orderUUID, ticketIndex, name, email)
+                   .then(
+                     function() {
+                      self.ticketsForChange[ticketIndex] = {}
+                      self.tickets[ticketIndex].holder.name = name;
+                      self.tickets[ticketIndex].holder.email = email;
+                   }, function() {
+                     alert("Something went wrong. Please report to hello@devternity.com")
+                   })
+
+          }
+
+          this.cancel = function(ticketIndex) {
+            this.ticketsForChange[ticketIndex] = {}
+          }
+
+          this.ticketsForChange = {};
           this.tickets = tickets;
       });      
     </script>
@@ -158,6 +187,15 @@
             .container footer {
                 display: block !important;
             }
+
+            .view {
+              display: block !important;
+            }
+
+            .edit {
+              display: none;
+            }
+
         }
 
         * {
@@ -181,6 +219,10 @@
             border: none;
         }
 
+        strong {
+          font-weight: bold;
+        }
+
         .container {
           max-width: 1350px;
           margin: 0 auto;
@@ -198,6 +240,10 @@
           background: #fff;
           margin: 10px;
           position: relative;
+        }
+
+        .container .view {
+          display: none;
         }
 
         .container footer {
@@ -286,6 +332,16 @@
           white-space: nowrap;
         }    
 
+        input[type="text"] {
+          padding: 12px 20px !important;
+          margin-top: 8px !important;
+          margin-right: 8px !important;
+          margin-bottom: 8px !important;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+        }
+
         @media print {
             .limit {
                 text-overflow: none;
@@ -293,6 +349,8 @@
                 white-space: normal;   
             }
         }
+
+        
     
     </style>
 </head>

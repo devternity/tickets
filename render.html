@@ -3,11 +3,8 @@
     <h1>Tickets</h1>
     <button ng-click="self.print()" class="print">Print all</button>
     <h2>Thanks for your purchase!</h2>
-    <p> Please bring printed tickets to the registration desk.
+    <p> Please bring printed tickets to the registration desk, or prepare to show them on your phone.
     </p>
-    <p>A person other than the ticket holder can attend the conference. You don't need to inform conference organisers on this occasion. 
-    </p>
-    <p>To receive important email updates, we recommend you to keep participant details up to date.</p>
   </header>
 
   <div class="item" ng-repeat="ticket in self.tickets">
@@ -45,8 +42,8 @@
       <div class="info edit">
         <div class="icon">
           <p>
-          <input type="text" placeholder="{{ticket.holder.name}}" ng-model="self.ticketsForChange[$index].name" />
-          <input type="text" placeholder="{{ticket.holder.email}}" ng-model="self.ticketsForChange[$index].email"/>
+          <input type="text" disabled placeholder="{{ticket.holder.name}}" ng-model="self.ticketsForChange[$index].name" />
+          <input type="text" disabled placeholder="{{ticket.holder.email}}" ng-model="self.ticketsForChange[$index].email"/>
           </p>
         </div>
         <div style="height: 1em">

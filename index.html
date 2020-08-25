@@ -21,7 +21,7 @@
         .service('Tickets', function($q, $http) {
             var self = this;
             this.update = function(orderUUID, index, name, email) {
-              return $http.post("https://api.devternity.com/applications/" + orderUUID + "/update/" + index, {
+              return $http.post("https://api2.devternity.com/applications/" + orderUUID + "/update/" + index, {
                 name: name,
                 email: email
               });

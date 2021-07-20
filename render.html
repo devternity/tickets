@@ -47,6 +47,10 @@
           <input type="text" placeholder="{{ticket.holder.name}}" ng-model="self.ticketsForChange[$index].name" />
           <input type="text" placeholder="{{ticket.holder.email}}" ng-model="self.ticketsForChange[$index].email"/>
           </p>
+          <p>
+            Access code: <br>
+            <b>{{ticket.id}}</b>
+          </p>
         </div>
         <div style="height: 1em">
           <a href="" ng-click="self.save($index)" ng-show="self.ticketsForChange[$index].name || self.ticketsForChange[$index].email">save</a>

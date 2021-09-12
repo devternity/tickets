@@ -31,6 +31,7 @@
               if (orderUUID === "TEST") {
                 var q = $q.defer();
                 q.resolve([
+                    undefined,
                     {
                       id: "865a12fb-b598-492f-9c04-4da28ede448a",
                       title: "DevTernity 2018",
@@ -103,7 +104,6 @@
               return $http
                 .get("https://devternity-22e74.firebaseio.com/applications/" + orderUUID + "/tickets.json")
                 .then(function(it) {
-                  return it.data;
                 });
             };
       })
@@ -117,7 +117,7 @@
                 if (!it) {
                   $location.path("/")
                 }
-                return it;
+                return it.filter(it => it);
               })
           }
         };

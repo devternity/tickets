@@ -9,7 +9,7 @@
     <p>You can change the attendee's info yourself by typing a new name or email. You don't need to inform conference organizers on this occasion. </p>
   </header>
 
-  <div class="item" ng-repeat="ticket in self.tickets">
+  <div class="item" ng-repeat="ticket in self.tickets" ng-show="ticket">
     <div class="item-right">
       <qrcode data="{{ticket.id}}" color="black" size="130"></qrcode>
       <span class="up-border"></span>

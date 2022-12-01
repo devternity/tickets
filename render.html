@@ -18,7 +18,7 @@
     </p>
 
     <p>You can change the attendee's info yourself by typing a new name or email. You don't have to inform conference organizers on this occasion. </p>
-    <p><b>You will receive information on how to join the conference 1 week before the event.</b></p>
+    <p><b>You will receive information on how to join the conference 5 days before the event.</b></p>
   </header>
 
   <div class="item" ng-repeat="ticket in self.tickets" ng-show="ticket">
@@ -60,7 +60,7 @@
           <input type="text" placeholder="{{ticket.holder.email}}" ng-model="self.ticketsForChange[$index].email"/>
           </p>
           <p>
-            Access code: <br>
+            Ticket ID: <br>
             <b>{{ticket.id}}</b>
           </p>
         </div>
